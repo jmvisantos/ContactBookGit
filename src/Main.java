@@ -10,14 +10,18 @@ public class Main {
     public static final String REMOVE_CONTACT = "RC";
     public static final String GET_PHONE      = "GP";
     public static final String GET_EMAIL      = "GE";
+    public static final String GET_NAME       = "GN";
     public static final String SET_PHONE      = "SP";
     public static final String SET_EMAIL      = "SE";
     public static final String LIST_CONTACTS  = "LC";
     public static final String QUIT           = "Q";
+    public static final String EQUAL_PHONES   = "EP";
+
 
     //Constantes que definem as mensagens para o utilizador
     public static final String CONTACT_EXISTS = "contactBook.Contact already exists.";
     public static final String NAME_NOT_EXIST = "contactBook.Contact does not exist.";
+    public static final String PHONE_NOT_EXIST = "Phone number does not exist.";
     public static final String CONTACT_ADDED = "contactBook.Contact added.";
     public static final String CONTACT_REMOVED = "contactBook.Contact removed.";
     public static final String CONTACT_UPDATED = "contactBook.Contact updated.";
@@ -44,6 +48,9 @@ public class Main {
                 case GET_EMAIL:
                     getEmail(in,cBook);
                     break;
+                case GET_NAME:
+                    getName(in,cBook);
+                    break
                 case SET_PHONE:
                     setPhone(in,cBook);
                     break;
@@ -52,6 +59,9 @@ public class Main {
                     break;
                 case LIST_CONTACTS:
                     listAllContacts(cBook);
+                    break;
+                case EQUAL_PHONES:
+                    equalPhones(cBook);
                     break;
                 default:
                     System.out.println(COMMAND_ERROR);
@@ -113,6 +123,17 @@ public class Main {
         else System.out.println(NAME_NOT_EXIST);
     }
 
+    // TODO: implement ContactBook Class functions
+    private static void getName(Scanner in, ContactBook cBook) {
+        int phone;
+        phone = in.nextInt(); in.nextLine();
+        // TODO: make a cBook.hasPhone(phone) method
+        if (cBook.hasPhone(phone)) {
+            System.out.println(cBook.getName(phone)); // TODO: make a cBook.getName(phone) method returns the OLDEST contact with that phone number
+        }
+        else System.out.println(PHONE_NOT_EXIST);
+    }
+
     private static void setPhone(Scanner in, ContactBook cBook) {
         String name;
         int phone;
@@ -147,4 +168,17 @@ public class Main {
         }
         else System.out.println(BOOK_EMPTY);
     }
+
+    // TODO: implement ContactBook Class functions
+    private static void equalPhones(ContactBook cBook) {
+        // if cBook.getNumberOfContacts() == 0 -> allContactsUnique() == true
+        if (cBook.allContactsUnique()) {
+            System.out.println("All contacts have different phone numbers.");
+        }
+        else {
+            System.out.println("There are contacts that share phone numbers.");
+        }
+    }
+
 }
+
