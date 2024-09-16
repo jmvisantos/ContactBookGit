@@ -50,7 +50,7 @@ public class Main {
                     break;
                 case GET_NAME:
                     getName(in,cBook);
-                    break
+                    break;
                 case SET_PHONE:
                     setPhone(in,cBook);
                     break;
