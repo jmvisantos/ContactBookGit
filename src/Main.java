@@ -26,6 +26,8 @@ public class Main {
     public static final String CONTACT_REMOVED = "contactBook.Contact removed.";
     public static final String CONTACT_UPDATED = "contactBook.Contact updated.";
     public static final String BOOK_EMPTY = "contactBook.Contact book empty.";
+    public static final String UNIQUE_PHONES = "All contacts have different phone numbers.";
+    public static final String SHARED_PHONES = "There are contacts that share phone numbers.";
     public static final String QUIT_MSG = "Goodbye!";
     public static final String COMMAND_ERROR = "Unknown command.";
 
@@ -123,13 +125,11 @@ public class Main {
         else System.out.println(NAME_NOT_EXIST);
     }
 
-    // TODO: implement ContactBook Class functions
     private static void getName(Scanner in, ContactBook cBook) {
         int phone;
         phone = in.nextInt(); in.nextLine();
-        // TODO: make a cBook.hasPhone(phone) method
         if (cBook.hasPhone(phone)) {
-            System.out.println(cBook.getName(phone)); // TODO: make a cBook.getName(phone) method returns the OLDEST contact with that phone number
+            System.out.println(cBook.getName(phone));
         }
         else System.out.println(PHONE_NOT_EXIST);
     }
@@ -169,14 +169,13 @@ public class Main {
         else System.out.println(BOOK_EMPTY);
     }
 
-    // TODO: implement ContactBook Class functions
     private static void equalPhones(ContactBook cBook) {
-        // if cBook.getNumberOfContacts() == 0 -> allContactsUnique() == true
+
         if (cBook.allContactsUnique()) {
-            System.out.println("All contacts have different phone numbers.");
+            System.out.println(UNIQUE_PHONES);
         }
         else {
-            System.out.println("There are contacts that share phone numbers.");
+            System.out.println(SHARED_PHONES);
         }
     }
 
